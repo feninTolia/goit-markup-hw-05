@@ -69,7 +69,11 @@
         <section class="hero section">
           <div class="container">
             <h1 class="hero__title">Эффективные решения для вашего бизнеса</h1>
-            <button class="button button--primary" type="button">
+            <button
+              data-open-modal
+              class="button button--primary"
+              type="button"
+            >
               Заказать услугу
             </button>
           </div>
@@ -140,28 +144,37 @@
           <h2 class="products__title section-title">Чем мы занимаемся</h2>
           <ul class="products__list list flex-cards">
             <li class="products__item">
-              <img
-                class="products__img"
-                src="./images/img-desktop-apps.jpg"
-                alt="На клавиатуре печатают исходный код и смотрят его на десктопе и планшете"
-                width="370"
-              />
+              <div class="products__thumb">
+                <img
+                  class="products__img"
+                  src="./images/img-desktop-apps.jpg"
+                  alt="На клавиатуре печатают исходный код и смотрят его на десктопе и планшете"
+                  width="370"
+                />
+                <p class="products__description">Десктопные приложения</p>
+              </div>
             </li>
             <li>
-              <img
-                class="products__img"
-                src="./images/img-mobile-apps.jpg"
-                alt="Человек смотрит на телефон и ноутбук с макетами"
-                width="370"
-              />
+              <div class="products__thumb">
+                <img
+                  class="products__img"
+                  src="./images/img-mobile-apps.jpg"
+                  alt="Человек смотрит на телефон и ноутбук с макетами"
+                  width="370"
+                />
+                <p class="products__description">Мобильные приложения</p>
+              </div>
             </li>
             <li>
-              <img
-                class="products__img"
-                src="./images/img-design-solutions.jpg"
-                alt="Человек держит планшет с селектором цветов"
-                width="370"
-              />
+              <div class="products__thumb">
+                <img
+                  class="products__img"
+                  src="./images/img-design-solutions.jpg"
+                  alt="Человек держит планшет с селектором цветов"
+                  width="370"
+                />
+                <p class="products__description">Дизайнерские решения</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -461,5 +474,38 @@
         </div>
       </div>
     </footer>
+
+    <!-- modal  -->
+    <div class="backdrop is-hidden" data-backdrop>
+      <div class="modal">
+        <button data-close-modal class="btn--modal">
+          <svg width="18" height="18">
+            <use href="./images/symbol-defs.svg#close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- script modal -->
+    <script>
+      const refs = {
+        openModalBtn: document.querySelector("[data-open-modal]"),
+        closeModalBtn: document.querySelector("[data-close-modal]"),
+        backdrop: document.querySelector("[data-backdrop]"),
+      };
+
+      refs.openModalBtn.addEventListener("click", toggleModal);
+      refs.closeModalBtn.addEventListener("click", toggleModal);
+
+      refs.backdrop.addEventListener("click", logBackdropClick);
+
+      function toggleModal() {
+        refs.backdrop.classList.toggle("is-hidden");
+      }
+
+      function logBackdropClick() {
+        console.log("Это клик в бекдроп");
+      }
+    </script>
   </body>
 </html>
